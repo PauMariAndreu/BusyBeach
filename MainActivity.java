@@ -9,11 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView imageView;
+    Button boton_principal;
+
     //Creamos el imageView principal de tipo .png
     //para el contorno de la isla.
 
@@ -24,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        imageView=(ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+
+        boton_principal = (Button) findViewById(R.id.button);
+
+        //le pasamos la funcion this para decirle el contexto que queremos
+        boton_principal.setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,5 +70,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.button:
+                Toast.makeText(getApplicationContext(),"Cargando datos...",Toast.LENGTH_SHORT).show();
+                break;
+
+        }
     }
 }
